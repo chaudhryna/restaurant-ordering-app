@@ -1,0 +1,68 @@
+import { menuArray } from './data.js';
+
+const orderDiv = document.getElementById('order')
+let orderArray = [];
+
+function getMenuHtml(){
+    let menuHtml = ``
+    
+    menuArray.forEach(function(item){
+      menuHtml += `
+  <div class="item">
+    <span class="item-emoji">${item.emoji}</span>
+    <div class="item-details">
+      <h3 class="item-name">${item.name}</h3>
+      <p class="item-ingredients">${item.ingredients}</p>
+      <p class="item-price">$${item.price}</p>
+    </div> 
+    <button class="item-add-btn" data-id="${item.id}">+</button> 
+  </div>
+    `;
+  }) 
+  return menuHtml;
+}
+
+function addToOrder(id) {
+  const targetItem = menuArray.find(item => item.id == id);
+  orderArray.push(targetItem)
+}
+
+function getOrderHtml() {
+  orderDiv.innerHTML = '';
+
+  if (orderArray.length > 0) {
+    let orderHtml = `
+    <h3 class="order-title">Your order</h3>
+    `
+    orderArray.forEach(function(item){
+      orderHtml += `
+      <div class="order-details">
+        <h3 class="order-item-name">${item.name}</h3>
+        <button class="item-remove-btn" data-id="${item.id}">Remove</button>
+        <p class="order-item-price">$${item.price}</p>
+      </div> 
+      `;
+    }) 
+    orderHtml += `
+    
+    <button class="complete-order-btn" id="complete-order-btn">Complete order</button>
+    `
+  orderDiv.innerHTML += orderHtml;
+  }
+}
+
+
+
+function renderMenu() {
+	document.getElementById('menu').innerHTML = getMenuHtml();
+}
+
+renderMenu();
+
+document.querySelectorAll('.item-add-btn').forEach((btn) => {
+	btn.addEventListener('click', (e) => {
+		const id = btn.dataset.id;
+    addToOrder(id);
+    getOrderHtml();
+	});
+});
