@@ -4,7 +4,6 @@ body {
     width: 37.5rem;
     height: 72.5rem;
     margin: auto;
-    border: 2px solid red;
     font-family: "Smythe", system-ui;
 } 
 
@@ -85,17 +84,6 @@ header .text-block {
     text-align: center;
 }
 
-.complete-order-btn {
-    background-color: #16db99;
-    color: #fff;
-    font-family: Verdana, sans-serif;
-    font-size: 1rem;
-    border: none;
-    padding: 1rem 12rem;
-    margin: 2.5rem;
-    cursor: pointer;
-}
-
 .order-details {
     display: flex;
     margin: 0 3rem;
@@ -109,7 +97,7 @@ header .text-block {
 }
 
 .order-item-price {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
 }
 
 .item-remove-btn {
@@ -119,4 +107,30 @@ header .text-block {
    color: #BBBBBB;
    padding-left: 1rem;
    cursor: pointer;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 3rem;
+    border-top: 1px solid black;
+}
+
+
+.order-total-label, 
+.order-total h3,
+.order-total p { 
+    font-size: 1.75rem;
+}
+
+.complete-order-btn {
+    background-color: #16db99;
+    color: #fff;
+    font-family: Verdana, sans-serif;
+    font-size: 1rem;
+    border: none;
+    padding: 1rem 12rem;
+    margin: 2.5rem;
+    cursor: pointer;
 }

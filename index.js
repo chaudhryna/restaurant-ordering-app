@@ -12,7 +12,7 @@ function getMenuHtml(){
     <span class="item-emoji">${item.emoji}</span>
     <div class="item-details">
       <h3 class="item-name">${item.name}</h3>
-      <p class="item-ingredients">${item.ingredients}</p>
+      <p class="item-ingredients">${item.ingredients.join(', ')}</p>
       <p class="item-price">$${item.price}</p>
     </div> 
     <button class="item-add-btn" data-id="${item.id}">+</button> 
@@ -27,14 +27,21 @@ function addToOrder(id) {
   orderArray.push(targetItem)
 }
 
-function getOrderHtml() {
-  orderDiv.innerHTML = '';
+function removeFromOrder(id) {
+  const indexToDelete = orderArray.findIndex((item) => item.id == id);
+  orderArray.splice(indexToDelete, 1);
+}
 
+function getOrderHtml() {
+  let orderTotal = 0;
+  orderDiv.innerHTML = '';
+  
   if (orderArray.length > 0) {
     let orderHtml = `
     <h3 class="order-title">Your order</h3>
     `
     orderArray.forEach(function(item){
+    
       orderHtml += `
       <div class="order-details">
         <h3 class="order-item-name">${item.name}</h3>
@@ -43,15 +50,19 @@ function getOrderHtml() {
       </div> 
       `;
     }) 
+    const orderTotal = orderArray.reduce((accumulator, item) => {
+      return accumulator + item.price;
+    }, 0);
     orderHtml += `
-    
-    <button class="complete-order-btn" id="complete-order-btn">Complete order</button>
-    `
+    <div class="order-total">
+      <h3 class="order-total-label">Total price:</h3>
+      <p class="order-total-price">$ ${orderTotal}</p>
+    </div> 
+    <button class="complete-order-btn">Complete order</button>
+    `;
   orderDiv.innerHTML += orderHtml;
   }
 }
-
-
 
 function renderMenu() {
 	document.getElementById('menu').innerHTML = getMenuHtml();
@@ -62,7 +73,18 @@ renderMenu();
 document.querySelectorAll('.item-add-btn').forEach((btn) => {
 	btn.addEventListener('click', (e) => {
 		const id = btn.dataset.id;
-    addToOrder(id);
-    getOrderHtml();
+		addToOrder(id);
+		getOrderHtml();
 	});
+});
+
+document.getElementById('order').addEventListener('click', (event) => {
+	if (event.target.classList.contains('item-remove-btn')) {
+    const id = event.target.dataset.id;
+		removeFromOrder(id);
+    getOrderHtml();
+	} else if (event.target.classList.contains('complete-order-btn')) {
+		console.log('Complete btn clicked!');
+    
+	}
 });
