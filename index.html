@@ -27,6 +27,32 @@
         <div class="order" id="order">
             <!-- order here -->
         </div>
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="modal">
+            <div class="modal-header">
+                <h3>Enter card details</h3>
+            </div>
+            <div class="modal-content">
+                <form action="" name="payment_form">
+                    <input type="text" 
+                        name="payee-name" 
+                        id="payee-id" 
+                        placeholder="Enter your name"
+                        required>
+                    <input type="text" 
+                        name="payee-card" 
+                        id="payee-card" 
+                        placeholder="Enter your card number"
+                        required>
+                    <input type="text" 
+                        name="payee-cvv" 
+                        id="payee-cvv"
+                        placeholder="Enter CVV"
+                        required minlength="3">
+                    <button class="pay-btn">Pay</button>
+                </form>
+            </div>
+        </div>
         <script src="index.js" type="module" defer></script>
     </body>
 </html>

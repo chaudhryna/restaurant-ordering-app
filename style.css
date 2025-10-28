@@ -5,6 +5,7 @@ body {
     height: 72.5rem;
     margin: auto;
     font-family: "Smythe", system-ui;
+    border: 1px solid red;
 } 
 
 header {
@@ -133,4 +134,44 @@ header .text-block {
     padding: 1rem 12rem;
     margin: 2.5rem;
     cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 542px;
+    width: 524px;
+    background-color: #fff;
+    box-shadow: 0px 22px 70px 4px rgba(0, 0, 0, 0.56);
+}
+
+.modal-header h3 {
+    margin-top: 50px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+input {
+    font-size: 1.25rem;
+    margin: 1rem;
+    padding: 1rem;
+    width: 450px;
+}
+
+.pay-btn {
+    margin: 1rem;
+    padding: 1.5rem 12rem;
+    background-color: #16db99;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border: none;
+    width: 480px;
 }

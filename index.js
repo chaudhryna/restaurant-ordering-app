@@ -1,6 +1,8 @@
 import { menuArray } from './data.js';
 
-const orderDiv = document.getElementById('order')
+const orderDiv = document.getElementById('order');
+const paymentModal = document.getElementById('paymentModal');
+
 let orderArray = [];
 
 function getMenuHtml(){
@@ -15,7 +17,7 @@ function getMenuHtml(){
       <p class="item-ingredients">${item.ingredients.join(', ')}</p>
       <p class="item-price">$${item.price}</p>
     </div> 
-    <button class="item-add-btn" data-id="${item.id}">+</button> 
+    <button class="item-add-btn" data-id="${item.id}">&times;</button> 
   </div>
     `;
   }) 
@@ -84,7 +86,10 @@ document.getElementById('order').addEventListener('click', (event) => {
 		removeFromOrder(id);
     getOrderHtml();
 	} else if (event.target.classList.contains('complete-order-btn')) {
-		console.log('Complete btn clicked!');
-    
-	}
+		paymentModal.style.display = 'block';
+	} else if (event.target.classList.contains('pay-btn')) {
+    paymentModal.style.display = 'none';
+  }
 });
+
+
