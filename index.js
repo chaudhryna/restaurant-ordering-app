@@ -1,7 +1,9 @@
 import { menuArray } from './data.js';
 
 const orderDiv = document.getElementById('order');
+const messageDiv = document.getElementById('message');
 const paymentModal = document.getElementById('paymentModal');
+const paymentForm = document.getElementById('payment-form');
 
 let orderArray = [];
 
@@ -66,12 +68,28 @@ function getOrderHtml() {
   }
 }
 
+function renderMessage(name) {
+	messageDiv.innerHTML += 
+      `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
+}
+
+function processPaymentForm() {
+  paymentForm.addEventListener('submit', (e) => {
+    e.preventDefault;
+    const paymentFormData = new FormData(paymentForm);
+    const name = paymentFormData.get('payee-name');
+    paymentModal.style.display = 'none';
+    renderMessage(name);
+  }) 
+}
+
 function renderMenu() {
 	document.getElementById('menu').innerHTML = getMenuHtml();
 }
 
 renderMenu();
 
+// Events
 document.querySelectorAll('.item-add-btn').forEach((btn) => {
 	btn.addEventListener('click', (e) => {
 		const id = btn.dataset.id;
@@ -80,16 +98,17 @@ document.querySelectorAll('.item-add-btn').forEach((btn) => {
 	});
 });
 
-document.getElementById('order').addEventListener('click', (event) => {
-	if (event.target.classList.contains('item-remove-btn')) {
-    const id = event.target.dataset.id;
+document.getElementById('order').addEventListener('click', (e) => {
+	if (e.target.classList.contains('item-remove-btn')) {
+    const id = e.target.dataset.id;
 		removeFromOrder(id);
     getOrderHtml();
-	} else if (event.target.classList.contains('complete-order-btn')) {
+	} else if (e.target.classList.contains('complete-order-btn')) {
 		paymentModal.style.display = 'block';
-	} else if (event.target.classList.contains('pay-btn')) {
-    paymentModal.style.display = 'none';
-  }
+	} 
 });
 
+document.getElementById('paymentModal').addEventListener('click', () => {
+  processPaymentForm();
+});
 

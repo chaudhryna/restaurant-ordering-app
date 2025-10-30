@@ -79,7 +79,6 @@ header .text-block {
 }
 
 /* Order section */
-
 .order-title {
     font-size: 1.75rem;
     text-align: center;
@@ -136,6 +135,7 @@ header .text-block {
     cursor: pointer;
 }
 
+/* Payment Modal */
 .modal {
     display: none;
     position: fixed;
@@ -174,4 +174,16 @@ input {
     font-weight: 700;
     border: none;
     width: 480px;
+}
+
+/* Message section */
+.message {
+    background-color: #b2f5d6;
+    color: #000;
+    font-size: 2rem;
+    width: 500px;
+    height: 5rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    margin: 1rem;
 }
