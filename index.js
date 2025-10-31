@@ -97,9 +97,10 @@ document.getElementById('order').addEventListener('click', (e) => {
 });
 
 paymentForm.addEventListener('submit', (e) => {
-		e.preventDefault;
+		e.preventDefault();
 		const paymentFormData = new FormData(paymentForm);
 		const name = paymentFormData.get('payee-name');
 		paymentModal.style.display = 'none';
+    orderDiv.innerHTML = '';
 		messageDiv.innerHTML = `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
 	});
