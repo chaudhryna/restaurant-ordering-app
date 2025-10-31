@@ -77,12 +77,6 @@ function getOrderHtml() {
   }
 }
 
-function renderMessage(name) {
-	const messageHtml = `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
-	console.log(messageHtml);
-	messageDiv.innerHTML = messageHtml;
-}
-
 // Events * adding items to order, ordering and displaying payment modal
 document.querySelectorAll('.item-add-btn').forEach((btn) => {
 	btn.addEventListener('click', (e) => {
@@ -107,5 +101,5 @@ paymentForm.addEventListener('submit', (e) => {
 		const paymentFormData = new FormData(paymentForm);
 		const name = paymentFormData.get('payee-name');
 		paymentModal.style.display = 'none';
-		renderMessage(name);
+		messageDiv.innerHTML = `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
 	});

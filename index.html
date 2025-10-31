@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,49 +14,43 @@
             href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Smythe&display=swap"
             rel="stylesheet">
     </head>
+
     <body>
-        <header>
-            <img src="images/restaurant-header.png" alt="restaurant image">
-            <div class="text-block">
-                <h4>Jimmy's Diner</h4>
-                <p>The best burgers and pizzas in town.</p>
+        <main>
+            <header>
+                <img src="images/restaurant-header.png" alt="restaurant image">
+                <div class="text-block">
+                    <h4>Jimmy's Diner</h4>
+                    <p>The best burgers and pizzas in town.</p>
+                </div>
+            </header>
+            <div class="menu" id="menu">
+                <!-- menu here!! -->
             </div>
-        </header>
-        <div class="menu" id="menu">
-            <!-- menu here!! -->
-        </div>
-        <div class="order" id="order">
-            <!-- order here -->
-        </div>
-        <div id="message">
-            <!-- message here -->
-        </div>
-        <!-- Payment Modal -->
-        <div id="paymentModal" class="modal">
-            <div class="modal-header">
-                <h3>Enter card details</h3>
+            <div class="order" id="order">
+                <!-- order here -->
             </div>
-            <div class="modal-content">
-                <form action="" name="payment-form" id="payment-form">
-                    <input type="text" 
-                        name="payee-name" 
-                        id="payee-id" 
-                        placeholder="Enter your name"
-                        required>
-                    <input type="text" 
-                        name="payee-card" 
-                        id="payee-card" 
-                        placeholder="Enter your card number"
-                        required>
-                    <input type="text" 
-                        name="payee-cvv" 
-                        id="payee-cvv"
-                        placeholder="Enter CVV"
-                        required minlength="3">
-                    <button class="pay-btn">Pay</button>
-                </form>
+            <div id="message">
+                <!-- message here -->
             </div>
-        </div>
+            <!-- Payment Modal -->
+            <div id="paymentModal" class="modal">
+                <div class="modal-header">
+                    <h3>Enter card details</h3>
+                </div>
+                <div class="modal-content">
+                    <form action="" name="payment-form" id="payment-form">
+                        <input type="text" name="payee-name" id="payee-id" placeholder="Enter your name" required>
+                        <input type="text" name="payee-card" id="payee-card" placeholder="Enter your card number"
+                            required>
+                        <input type="text" name="payee-cvv" id="payee-cvv" placeholder="Enter CVV" required
+                            minlength="3">
+                        <button class="pay-btn">Pay</button>
+                    </form>
+                </div>
+            </div>
+        </main>
         <script src="index.js" type="module" defer></script>
     </body>
+
 </html>
