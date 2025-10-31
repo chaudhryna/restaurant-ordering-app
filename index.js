@@ -7,6 +7,7 @@ const paymentForm = document.getElementById('payment-form');
 
 let orderArray = [];
 
+// Create menu and render
 function getMenuHtml(){
     let menuHtml = ``
     
@@ -26,6 +27,13 @@ function getMenuHtml(){
   return menuHtml;
 }
 
+function renderMenu() {
+	document.getElementById('menu').innerHTML = getMenuHtml();
+}
+
+renderMenu();
+
+
 function addToOrder(id) {
   const targetItem = menuArray.find(item => item.id == id);
   orderArray.push(targetItem)
@@ -36,6 +44,7 @@ function removeFromOrder(id) {
   orderArray.splice(indexToDelete, 1);
 }
 
+// Create order, add items, remove items and update
 function getOrderHtml() {
   let orderTotal = 0;
   orderDiv.innerHTML = '';
@@ -69,27 +78,12 @@ function getOrderHtml() {
 }
 
 function renderMessage(name) {
-	messageDiv.innerHTML += 
-      `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
+	const messageHtml = `<p class="message">Thanks, ${name}! Your order is on its way!</p>`;
+	console.log(messageHtml);
+	messageDiv.innerHTML = messageHtml;
 }
 
-function processPaymentForm() {
-  paymentForm.addEventListener('submit', (e) => {
-    e.preventDefault;
-    const paymentFormData = new FormData(paymentForm);
-    const name = paymentFormData.get('payee-name');
-    paymentModal.style.display = 'none';
-    renderMessage(name);
-  }) 
-}
-
-function renderMenu() {
-	document.getElementById('menu').innerHTML = getMenuHtml();
-}
-
-renderMenu();
-
-// Events
+// Events * adding items to order, ordering and displaying payment modal
 document.querySelectorAll('.item-add-btn').forEach((btn) => {
 	btn.addEventListener('click', (e) => {
 		const id = btn.dataset.id;
@@ -108,7 +102,10 @@ document.getElementById('order').addEventListener('click', (e) => {
 	} 
 });
 
-document.getElementById('paymentModal').addEventListener('click', () => {
-  processPaymentForm();
-});
-
+paymentForm.addEventListener('submit', (e) => {
+		e.preventDefault;
+		const paymentFormData = new FormData(paymentForm);
+		const name = paymentFormData.get('payee-name');
+		paymentModal.style.display = 'none';
+		renderMessage(name);
+	});
